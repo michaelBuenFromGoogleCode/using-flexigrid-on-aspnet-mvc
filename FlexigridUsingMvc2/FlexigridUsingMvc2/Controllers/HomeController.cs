@@ -59,14 +59,13 @@ namespace FlexigridUsingMvc2.Controllers
                             CustomerFiltered()                            
                             .OrderBy(x => x.CompanyName)
                             .LimitAndOffset(pageSize: rp, pageOffset: page)
+                            .ToList()
                             .Select(x =>
                                 new
                                 {
                                     id = x.CustomerID,
-                                    cell = new List<string> { x.CompanyName, x.ContactName, x.ContactTitle }
-                                })
-                            .ToList()
-
+                                    cell = new string[] { x.CompanyName, x.ContactName, x.ContactTitle }
+                                })                            
                     });
                 
 
